@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Claude 4.5 Opus via Puter</h1>
+    <div id="response" style="white-space: pre-wrap; font-family: monospace;">Waiting for Claude...</div>
+
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        // Using the 'puter.ai.chat' function
+        puter.ai.chat(
+            "Write a complex Python script for an Arduino robotics project.", 
+            { 
+                model: 'claude-opus-4-5', // You can also use 'claude-sonnet-4-5'
+                stream: true 
+            }
+        ).then(async (response) => {
+            const display = document.getElementById('response');
+            display.innerHTML = ""; // Clear waiting text
+            
+            for await (const part of response) {
+                display.innerText += part.text;
+            }
+        });
+    </script>
+</body>
+</html>
